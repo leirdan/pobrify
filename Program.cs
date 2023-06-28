@@ -8,11 +8,10 @@ namespace pobrify
         {
             try
             {
-                string main = "spotify.com/user/leirdan";
-                var formatter = new URLFormatter("https://open.spotify.com/intl-pt/album/1XtnMkxeV9wdELLvBZxktL");
-                //string[] aux = main.Split('/'); 
-                //Console.WriteLine(aux[2]);
-                // "leirdan"
+                string url = "https://open.spotify.com/intl-pt/tRaCk/2JWP3EPVXHxnYatwaWkf08&si=36f88f89fcce4fcd";
+                var formatter = new URLFormatter(url);
+                var id = formatter.GetID(url);
+                Console.WriteLine($"O id é: {id}");
             }
             catch (ArgumentException ex)
             {

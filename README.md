@@ -11,6 +11,7 @@
     - [3.2. IndexOf()](#32-indexof)
     - [3.3. IsNullOrEmpty()](#33-isnullorempty)
     - [3.4. Split()](#34-split)
+    - [3.5. Remove()](#35-remove)
 
 <!-- /code_chunk_output -->
 
@@ -36,3 +37,11 @@ Método estático (acessível diretamente a partir do tipo `String`) que verific
 
 #### 3.4. Split()
 Recebe como argumento um caractere separador, e retorna um array de substrings separadas com base nesse caractere específico.
+#### 3.5. Remove()
+Recebe como parâmetro uma posição na string e uma quantidade de caracteres (opcional) e retorna uma nova string sem os caracteres a partir da posição informada até o fim (ou até atingir a quantidade informada).
+
+#### 3.6. ToUpper() - ToLower()
+Método invocado em um objeto que retorna a string original em caixa alta (ToUpper) ou caixa baixa (ToLower).
+
+#### 3.7. Contains()
+Método que verifica se uma string contém uma determinada substring, e retorna um booleano como resposta.

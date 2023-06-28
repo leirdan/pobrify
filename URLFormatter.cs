@@ -7,12 +7,41 @@ namespace pobrify
     /// </summary>
     internal class URLFormatter
     {
-        private readonly string _path;
         public string URL { get; }
         public URLFormatter(String url)
         {
             if (String.IsNullOrEmpty(url)) throw new ArgumentException("O argumento URL não pode ser nulo ou estar vazio!", nameof(URL));
             else URL = url;
+        }
+
+        public string GetID(string url)
+        {
+            string var = url.ToLower();
+            #region softVersion
+            if (var.Contains("/album") || var.Contains("/track") || var.Contains("/playlist"))
+            {
+                // Separa e adiciona em um array cada substring da url
+                string[] aux = url.Split('/');
+                // Verifica se existem parâmetros na URL e os remove caso existam
+                if (aux[5].Contains("?"))  
+                {
+                    int index = aux[5].IndexOf("?");
+                    var id = aux[5].Remove(index);
+                    return id;
+                }
+                else if (aux[5].Contains("&"))
+                {
+                    int index = aux[5].IndexOf("&");
+                    var id = aux[5].Remove(index);
+                    return id;
+                }
+                return aux[5]; // id
+            }
+            else
+            {
+                throw new ArgumentException("URL em formato incorreto.");
+            }
+            #endregion
             #region rawVersion
             //if (url.Contains("/album"))
             //{
@@ -40,17 +69,7 @@ namespace pobrify
             //    throw new ArgumentException("URL em formato incorreto.");
             //}
             #endregion
-            #region softVersion
-            if (url.Contains("/album") || url.Contains("/track") || url.Contains("/playlist"))
-            {
-                string[] aux = url.Split('/');
-                Console.WriteLine($"É um(a) {aux[4]} de ID {aux[5]}.");
-            }
-            else
-            {
-                throw new ArgumentException("URL em formato incorreto.");
-            }
-            #endregion
         }
+
     }
 }

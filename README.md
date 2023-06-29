@@ -12,6 +12,9 @@
     - [3.3. IsNullOrEmpty()](#33-isnullorempty)
     - [3.4. Split()](#34-split)
     - [3.5. Remove()](#35-remove)
+    - [3.6. ToUpper() - ToLower()](#36-toupper---tolower)
+    - [3.7. Contains()](#37-contains)
+- [ REGEX ](#center-regex-center)
 
 <!-- /code_chunk_output -->
 
@@ -45,3 +48,32 @@ Método invocado em um objeto que retorna a string original em caixa alta (ToUpp
 
 #### 3.7. Contains()
 Método que verifica se uma string contém uma determinada substring, e retorna um booleano como resposta.
+
+
+## <center> REGEX </center>
+
+Expressões regulares (abreviadas comumente como **Regex**) são sequências de caracteres extremamente úteis para identificar padrões em strings e buscar dados, como CPFs, números de telefone e outros. Vamos montar de exemplo um Regex para identificar um número de telefone:
+Temos que o número terá 9 caracteres e um hífen os separando, no formato *XXXXX-XXXX*. Assim, temos inicialmente, para cada caractere, a possibilidade de dígitos `[0123456789]`, e no 6º caractere, o único dígito `[-]`.
+```cs
+string pattern = "[0-9][0-9][0-9][0-9][0-9][-][0-9][0-9][0-9][0-9]";
+string text = "99953-2891";
+Console.WriteLine(Regex.IsMatch(text, pattern)); // verifica se uma parte da string bate com o padrão regular, e retorna true nesse caso.
+```
+
+É possível encurtar o padrão usando *quantificadores* da seguinte forma:
+```cs
+// as {} indicam o número de vezes que o grupo de caracteres se repete, ou seja, os quantificadores; o primeiro par de {} indica que o padrão se repete de 4 a 5 vezes (para englobar os telefones e também números de celulares)
+string pattern = "[0-9]{4,5}[-][0-9]{4}";
+```
+
+Para casos onde o número vem sem o hífen, podemos melhorar:
+```cs
+string pattern = "[0-9]{4,5}-{0,1}[0-9]{4}"; // removemos os colchetes no hífen pois é somente um caractere.
+```
+
+É possível substituir esse {0, 1} por um "?":
+```cs
+string pattern = "[0-9]{4,5}-?[0-9]{4}";
+```
+
+Pronto, temos uma regex básica para capturar um número de telefone.

@@ -15,6 +15,9 @@
     - [3.6. ToUpper() - ToLower()](#36-toupper---tolower)
     - [3.7. Contains()](#37-contains)
 - [ REGEX ](#center-regex-center)
+- [ ARRAYS E TIPOS GENÉRICOS ](#center-arrays-e-tipos-genéricos-center)
+  - [1. Definição](#1-definição-1)
+  - [2. Iteração com comprimento do array](#2-iteração-com-comprimento-do-array)
 
 <!-- /code_chunk_output -->
 
@@ -77,3 +80,66 @@ string pattern = "[0-9]{4,5}-?[0-9]{4}";
 ```
 
 Pronto, temos uma regex básica para capturar um número de telefone.
+
+## <center> ARRAYS E TIPOS GENÉRICOS </center>
+
+### 1. Definição
+*Arrays* são coleções de dados do mesmo tipo em uma variável só. Para declarar um array, deve-se informar o tipo do array, indicar que é uma coleção a partir das `[]`, nomear o array e construí-lo. Por exemplo, temos:
+```cs
+string[] songs = new string[5];
+songs[0] = "in the dark"; // atribuição de valor para um array
+```
+
+É possível acessar um valor de um array a partir de seu índice, como em `songs[0]`, que retorna a string "in the dark".
+
+### 2. Iteração com comprimento do array
+Acessando manualmente um índice de um array para descobrir o seu valor, é necessário escrever todas as possibilidades de índices que o array tem, como `songs[1]`, `songs[2]`, `songs[3]` e `songs[4]`. Ao invés disso, é possível utilizar da propriedade **length** (representa o comprimento do array) e acessar os valores em um laço de repetição, como em:
+```cs
+ // Declara um array com um tamanho fixo
+string[] songs = new string[5];
+songs[0] = "in the dark";
+songs[1] = "drugs and love";
+songs[2] = "a blaze in the northern sky";
+songs[3] = "the deathless sun";
+songs[4] = "it's nice to have a friend";
+
+Console.WriteLine("fav songs:");
+for (int i = 0; i < songs.Length; i++)
+{
+  // Acessa o índice do array e imprime cada um de seus valores de forma dinâmica
+    Console.WriteLine(" - " + songs[i]);
+}
+```
+
+É possível também utilizar um laço de repetição para inicializar um array, como em:
+```cs
+Console.Write("insert the limit of albums: ");
+int limit = Convert.ToInt32(Console.ReadLine());
+string[] albums = new string[limit];
+// Inicializando os elementos do array com base nas entradas do usuário
+for (int j = 0; j < limit; j++)
+{
+    var a = Console.ReadLine();
+    albums[j] = a;
+};
+// Exibindo os elementos inseridos pelo usuário
+Console.WriteLine("favorite albums are:" );
+for (int k = 0; k < albums.Length;  k++)
+{
+    Console.WriteLine(albums[k]);
+}
+
+Console.ReadLine();
+```
+
+Uma forma simplificada de inicializar manualmente o array também é por meio de: 
+```cs
+string[] songs = new string[]
+{
+    "in the dark", // indice 0
+    "drugs and love", // indice 1
+    "a blaze in the northern sky",
+    "the deathless sun",
+    "it's nice to have a friend"
+};
+```

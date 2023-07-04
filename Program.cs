@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Linq;
 
 namespace pobrify
 {
@@ -13,12 +13,14 @@ namespace pobrify
                 int limit = Convert.ToInt32(Console.ReadLine());
                 SongsList songs = new SongsList(limit);
                 Console.WriteLine("Now, you need to insert the all the songs title one by one.");
+
                 for (int i = 0; i < limit; i++)
                 {
                     string name = Console.ReadLine();
-                    Song s = new Song(songs._size + 1, name);
-                    songs.AddSong(s);
+                    // Utiliza o método "set" do indexador.
+                    songs[i] = new Song(songs._size + 1, name);
                 }
+
                 songs.ListSongs();
                 Console.Write("do you wanna edit a song, remove or find one by its id? (options: 1, 2, 3): ");
                 var opt = Convert.ToInt32(Console.ReadLine());
@@ -36,13 +38,22 @@ namespace pobrify
                 }
                 else if (opt == 2)
                 {
-                    Console.Write("wanna delete by id or the last one? ");
+                    Console.Write("Wanna delete by id or the last one? ");
                     string op = Console.ReadLine();
                     if (op == "id")
                     {
-                        Console.Write("so insert the id: ");
-                        int id = Convert.ToInt32(Console.ReadLine());
-                        songs.RemoveSong(id);
+                        Console.WriteLine("How many songs will be deleted?");
+                        int l = Convert.ToInt32(Console.ReadLine());    
+                        Console.WriteLine("So insert the id(s): ");
+                        int[] idens = new int[l];
+                        for (int i = 0; i < l; i++)
+                        {
+                            int id = Convert.ToInt32(Console.ReadLine());
+                            idens.SetValue(id, i);
+                        }
+                        Console.WriteLine(idens[0]);
+
+                        songs.RemoveSong(idens);
                         songs.ListSongs();
                     }
                     else if (op == "last")

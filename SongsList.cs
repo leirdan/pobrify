@@ -12,6 +12,20 @@ namespace pobrify
         public int _size = 0;
 
         /// <summary>
+        /// Indexador, permite acessar a instância _songs[i] de forma direta, sem precisar declarar um método interno na classe (AddSong) para inserir valores.
+        /// </summary>
+        /// <param name="index"></param>
+        public Song this[int index]
+        {
+            get { return _songs[index]; }
+            set
+            {
+                _size++;
+                _songs[index] = value;
+            }
+        }
+
+        /// <summary>
         /// Construtor da lista que recebe somente o tamanho dela.
         /// </summary>
         /// <param name="range">Argumento opcional que representa o tamanho da lista de músicas; deve ser um valor maior que 0 para poder guardar um item. Tem por padrão o valor 5.</param>
@@ -29,38 +43,12 @@ namespace pobrify
         public void ListSongs()
         {
             Console.WriteLine("these are the songs you added:");
-            //foreach (var item in this._songs)
-            //{
-            //    Console.WriteLine($"{item.Title}, ID: {item.Id}");
-            //}
-
-            for (int i = 0; i < this._songs.Length; i++)
+            foreach (Song item in _songs)
             {
-                if (this._songs[i] == null)
+                if (item != null)
                 {
+                    Console.WriteLine($"{item.Title}, ID: {item.Id}");
                 }
-                else
-                {
-                    Console.WriteLine($"{this._songs[i].Title}, ID: {this._songs[i].Id}");
-                }
-            }
-        }
-        /// <summary>
-        /// Adiciona uma nova música na lista.
-        /// </summary>
-        /// <param name="song">Um objeto do tipo Song que deve ser passado.</param>
-        /// <exception cref="FormatException">Lançada quando a cadeia de caracteres contém um caracter inválido.</exception>
-        public void AddSong(Song song)
-        {
-            try
-            {
-                _songs[_nextIndex] = song;
-                _nextIndex++;
-                _size++;
-            }
-            catch (FormatException)
-            {
-                throw new FormatException();
             }
         }
         /// <summary>
@@ -120,16 +108,20 @@ namespace pobrify
         }
 
         /// <summary>
-        /// Remove uma música na lista com base no seu identificador.
+        /// Remove uma música na lista com base em identificadores.
         /// </summary>
         /// <param name="id">Identificador da música.</param>
-        public void RemoveSong(int id)
+        // A palavra reservada params permite que seja passado um número variável de argumentos em uma matriz.
+        public void RemoveSong(params int[] id)
         {
             try
             {
-                if (Song.VerifyId(id))
+                foreach (int i in id)
                 {
-                    _songs[id - 1] = null;
+                    if (Song.VerifyId(i))
+                    {
+                        _songs[i - 1] = null;
+                    }
                 }
             }
             catch (ArgumentOutOfRangeException e)

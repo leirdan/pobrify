@@ -9,6 +9,18 @@ namespace pobrify
         {
             try
             {
+                Console.WriteLine("Welcome. Will you add songs, an album or create a new playlist? ( 1 / 2 / 3)");
+                var opt = Convert.ToInt32(Console.ReadLine());  
+                if (opt == 1)
+                {
+                }
+                else if (opt == 2)
+                {
+                }
+                else if (opt == 3)
+                {
+                }
+
                 Console.Write("Insert the number of songs: ");
                 int limit = Convert.ToInt32(Console.ReadLine());
                 SongsList songs = new SongsList(limit);

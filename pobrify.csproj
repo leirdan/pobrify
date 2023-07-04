@@ -43,11 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Album.cs" />
+    <Compile Include="Playlist.cs" />
+    <Compile Include="PobrifyList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Song.cs" />
     <Compile Include="SongsList.cs" />
     <Compile Include="URLFormatter.cs" />
+    <Compile Include="V.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />

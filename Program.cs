@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pobrify.Extensions;
+using System;
 using System.Collections.Generic;
 
 namespace pobrify
@@ -10,10 +11,10 @@ namespace pobrify
             // IMPLEMENTAR OS METODOS DE MANIPULACAO DE ALBUM, MUSICA E PLAYLIST
             try
             {
-                Console.Write("Hey there! Will you add songs, an album or create a new playlist? (song / alb / play) ");
-                var opt = Console.ReadLine();
                 do
                 {
+                    Console.Write("Hey there! Will you add songs, an album or create a new playlist? (song / alb / play) ");
+                    var opt = Console.ReadLine();
                     if (opt == "song")
                     {
                         SongsAlg();
@@ -52,10 +53,10 @@ namespace pobrify
             {
                 // Lista que contém valores do tipo Album
                 List<Album> albumsList = new List<Album>();
-                Console.WriteLine("Insert how many albums will be stored: ");
+                Console.Write("How many albums do you want to store? ");
                 int limit = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Now, you need to insert the all the albums title one by one.");
-                
+                Console.WriteLine("Now, you need to insert the all the albums title, one by one.");
+
                 Album[] temp = new Album[limit];
 
                 for (int i = 0; i < limit; i++)
@@ -65,7 +66,10 @@ namespace pobrify
                 }
 
                 // Sem o método de extensão -> ListExtensions.AddMany(albumsList, temp);
-                albumsList.AddMany(temp); // Com método de extensão; adiciona diretamente na lista.
+                // Com método de extensão; adiciona diretamente na lista.
+                albumsList.AddMany(temp);
+                // Não é necessário informar o tipo <Album> entre <> após a chamada do método pois o .NET infere que o tipo é o mesmo do objeto que está o chamando. 
+                Console.WriteLine("You added the following albums: ");
                 foreach (var album in albumsList)
                 {
                     Console.WriteLine(album.Title);

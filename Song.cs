@@ -24,5 +24,9 @@ namespace pobrify
             Title = title;
         }
 
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

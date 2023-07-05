@@ -41,9 +41,13 @@ namespace pobrify
         }
         public static bool ExitProgram()
         {
-            Console.WriteLine("Do you want to finish this program? (yes / no)");
+            Console.WriteLine("Do you want to finish this program? (yes/no)");
             string res = Console.ReadLine();
-            return res.ToLower() == "yes";
+            if (res != "no")
+            {
+                return true;
+            }
+            return false;
         }
 
         // Utiliza a classe List do .NET
@@ -54,12 +58,12 @@ namespace pobrify
                 // Lista que contém valores do tipo Album
                 List<Album> albumsList = new List<Album>();
                 Console.Write("How many albums do you want to store? ");
-                int limit = Convert.ToInt32(Console.ReadLine());
+                var limit = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Now, you need to insert the all the albums title, one by one.");
 
                 Album[] temp = new Album[limit];
 
-                for (int i = 0; i < limit; i++)
+                for (var i = 0; i < limit; i++)
                 {
                     var title = Console.ReadLine();
                     temp.SetValue(new Album(i + 1, title), i);
@@ -70,9 +74,10 @@ namespace pobrify
                 albumsList.AddMany(temp);
                 // Não é necessário informar o tipo <Album> entre <> após a chamada do método pois o .NET infere que o tipo é o mesmo do objeto que está o chamando. 
                 Console.WriteLine("You added the following albums: ");
+                albumsList.Sort();
                 foreach (var album in albumsList)
                 {
-                    Console.WriteLine(album.Title);
+                    Console.WriteLine($"{album.Title}, ID: {album.Id}");
                 }
             }
             catch (Exception e)

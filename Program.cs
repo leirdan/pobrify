@@ -1,6 +1,7 @@
 ﻿using pobrify.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace pobrify
 {
@@ -54,7 +55,7 @@ namespace pobrify
         public static bool AlbumsAlg()
         {
             try
-            {
+            { 
                 // Lista que contém valores do tipo Album
                 List<Album> albumsList = new List<Album>();
                 Console.Write("How many albums do you want to store? ");
@@ -73,9 +74,31 @@ namespace pobrify
                 // Com método de extensão; adiciona diretamente na lista.
                 albumsList.AddMany(temp);
                 // Não é necessário informar o tipo <Album> entre <> após a chamada do método pois o .NET infere que o tipo é o mesmo do objeto que está o chamando. 
+
+                /*
+                ORDER BY -
+                    Método que itera sobre um conjunto de dados. A expressão passada como argumento, neste caso,
+                    entrega ao método um elemento "album", e o método retornará o atributo título desse elemento.
+                    O código após a "=>" pode ser tanto uma linha quanto um bloco de código inteiro; a esse conjunto
+                    damos o nome "expressão lambda".
+                    O método tem a seguinte definição:
+                    "static IOrderedEnumerable<TSource> OrderBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)"
+                    Ou seja, adaptando para nosso caso:
+                    - é um método genérico do tipo IOrderedEnumerable (que contém elementos do tipo "Album");
+                    - recebe como parâmetros um elemento do tipo Album e retorna uma string (título do Album).
+                 
+                 * é possível reescrever as duas instruções abaixo:
+                    IEnumerable<Album> nonNull = albumsList.Where(i => i != null);
+                    IOrderedEnumerable<Album> res = nonNull.OrderBy(album => album.Title);
+                    da seguinte forma:
+                 */
+
+                var res = albumsList
+                    .Where(i => i != null) // Filtragem apenas de álbuns válidos
+                    .OrderBy(album => album.Title); // Ordenação por ordem alfabética
+                
                 Console.WriteLine("You added the following albums: ");
-                albumsList.Sort();
-                foreach (var album in albumsList)
+                foreach (var album in res) 
                 {
                     Console.WriteLine($"{album.Title}, ID: {album.Id}");
                 }

@@ -25,6 +25,7 @@ namespace pobrify
         }
 
         // Herdado da interface IPobrifyObject, a qual herda a interface IComparable.
+        // Útil para definir uma comparação personalizada.
         public int CompareTo(object obj)
         {
             // < 0: instância precede o obj

@@ -10,9 +10,9 @@ namespace pobrify
     /// </summary>
     // Aqui, é informado ao compilador que o tipo T é sempre uma classe, e assim é possível usar a referência nula dentro da classe.
     // Caso contrário, como um valor (int, bool, etc) não pode receber a referência nula, o código não compilaria.
-    class PobrifyList<T> where T : class // T = Type
+    class PobrifyList<T> where T : class, IPobrifyObject // T = Type
     {
-        private T[] _items;
+        private readonly T[] _items;
         private int _nextIndex = 0;
         public int _size = 0;
 
@@ -47,19 +47,30 @@ namespace pobrify
         /// </summary>
         public void Index()
         {
-            Console.WriteLine("these are the songs you added:");
             foreach (T item in _items)
             {
                 if (item != null)
                 {
-                    Console.WriteLine("informações do que quer q seja");
+                    if (item is Song song)
+                    {
+                        Console.WriteLine($"{song.Title}, ID {song.Id}");
+                    }
+                    else if (item is Playlist playlist)
+                    {
+                        Console.WriteLine($"{playlist.Title}, ID {playlist.Id}");
+                    }
+                    else if (item is Album album)
+                    {
+                        Console.WriteLine($"{album.Title}, ID {album.Id}");
+                    }
                 }
             }
         }
+
         /// <summary>
         /// Retorna dados de um objeto específico com base no seu identificador.
         /// </summary>
-        /// <param name="id">O ID ddo objeto; deve ser um número inteiro maior que 0.</param>
+        /// <param name="id">O ID do objeto; deve ser um número inteiro maior que 0.</param>
         /// <returns>Retorna o objeto que foi encontrada pelo ID ou um valor nulo, indicando que não há objeto com esse ID.</returns>
         public T FindById(int id)
         {
@@ -74,27 +85,23 @@ namespace pobrify
             {
                 Console.WriteLine(e.Message);
             }
-            return default;
+            return null;
         }
 
         /// <summary>
         /// Realiza a mudança de dados do objeto com base no identificador fornecido.
         /// </summary>
         /// <param name="id"> O ID do objeto; deve ser um número inteiro maior que 0.</param>
-        public void Edit(int id)
+        public void Edit(int id, string title)
         {
             try
             {
                 if (V.VerifyId(id))
                 {
-                    //Console.WriteLine($"you will now modify the song '{_items[id - 1].Title}!'");
-                    //Console.Write("please, insert the new song's title: ");
-                    //var title = Console.ReadLine();
-                    //Song s = new Song(id, title);
-
-                    _items[id - 1] = null;
-                    //_items[id - 1] = s;
+                    _items[id - 1].Id = id;
+                    _items[id - 1].Title = title;
                 }
+                Index();
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -102,15 +109,17 @@ namespace pobrify
             }
         }
 
-        /// <summary>
-        /// Remove o último objeto que foi inserido na lista.
-        /// </summary>
-        public void Delete()
-        {
-            _nextIndex = 1;
-            _items[_items.Length - (_nextIndex)] = null;
-            _nextIndex++;
-        }
+        ///// <summary>
+        ///// Remove o último objeto que foi inserido na lista.
+        ///// </summary>
+        //public void Delete()
+        //{
+        //    _nextIndex = 1;
+        //    _items[_items.Length] = null;
+        //    _nextIndex++;
+
+        //    Index();
+        //}
 
         /// <summary>
         /// Remove um objeto na lista com base em identificadores.
@@ -125,9 +134,14 @@ namespace pobrify
                 {
                     if (V.VerifyId(i))
                     {
+                        if (i == 0)
+                        {
+                            _items[_items.Length] = null;
+                        }
                         _items[i - 1] = null;
                     }
                 }
+                Index();
             }
             catch (ArgumentOutOfRangeException e)
             {

@@ -1,9 +1,37 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace pobrify
 {
     class Program
     {
+        static void Main(string[] args)
+        {
+            // IMPLEMENTAR OS METODOS DE MANIPULACAO DE ALBUM, MUSICA E PLAYLIST
+            try
+            {
+                Console.Write("Hey there! Will you add songs, an album or create a new playlist? (song / alb / play) ");
+                var opt = Console.ReadLine();
+                do
+                {
+                    if (opt == "song")
+                    {
+                        SongsAlg();
+                    }
+                    else if (opt == "alb")
+                    {
+                        AlbumsAlg();
+                    }
+                    else if (opt == "play")
+                    {
+                    }
+                } while (!ExitProgram());
+            }
+            catch (Exception)
+            {
+
+            }
+        }
         public static bool ShouldContinue()
         {
             Console.WriteLine("Do you want to continue? (yes / no)");
@@ -16,6 +44,40 @@ namespace pobrify
             string res = Console.ReadLine();
             return res.ToLower() == "yes";
         }
+
+        // Utiliza a classe List do .NET
+        public static bool AlbumsAlg()
+        {
+            try
+            {
+                // Lista que contém valores do tipo Album
+                List<Album> albumsList = new List<Album>();
+                Console.WriteLine("Insert how many albums will be stored: ");
+                int limit = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Now, you need to insert the all the albums title one by one.");
+                
+                Album[] temp = new Album[limit];
+
+                for (int i = 0; i < limit; i++)
+                {
+                    var title = Console.ReadLine();
+                    temp.SetValue(new Album(i + 1, title), i);
+                }
+
+                // Sem o método de extensão -> ListExtensions.AddMany(albumsList, temp);
+                albumsList.AddMany(temp); // Com método de extensão; adiciona diretamente na lista.
+                foreach (var album in albumsList)
+                {
+                    Console.WriteLine(album.Title);
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return true;
+        }
+        // Utiliza uma classe personalizada, PobrifyList
         public static bool SongsAlg()
         {
             try
@@ -108,32 +170,6 @@ namespace pobrify
             return true;
         }
 
-        static void Main(string[] args)
-        {
-            // IMPLEMENTAR OS METODOS DE MANIPULACAO DE ALBUM, MUSICA E PLAYLIST
-            try
-            {
-                Console.Write("Welcome. Will you add songs, an album or create a new playlist? (song / alb / play)");
-                var opt = Console.ReadLine();
-                do
-                {
-                    if (opt == "song")
-                    {
-                        SongsAlg();
-                    }
-                    else if (opt == "alb")
-                    {
-                    }
-                    else if (opt == "play")
-                    {
-                    }
-                } while (!ExitProgram());
-            }
-            catch (Exception)
-            {
-
-            }
-        }
         static void Url()
         {
             try

@@ -1,7 +1,9 @@
 ﻿using pobrify.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Net.Http.Headers;
 
 namespace pobrify
 {
@@ -55,7 +57,7 @@ namespace pobrify
         public static bool AlbumsAlg()
         {
             try
-            { 
+            {
                 // Lista que contém valores do tipo Album
                 List<Album> albumsList = new List<Album>();
                 Console.Write("How many albums do you want to store? ");
@@ -96,12 +98,23 @@ namespace pobrify
                 var res = albumsList
                     .Where(i => i != null) // Filtragem apenas de álbuns válidos
                     .OrderBy(album => album.Title); // Ordenação por ordem alfabética
-                
+
                 Console.WriteLine("You added the following albums: ");
-                foreach (var album in res) 
+                foreach (var album in res)
                 {
                     Console.WriteLine($"{album.Title}, ID: {album.Id}");
                 }
+                int r = 0;
+                do
+                {
+                    var ret = AlbumsOps(albumsList);
+                    if (ret == true)
+                    {
+                        r = 1;
+                        break;
+                    }
+                } while (ShouldContinue() && r == 0);
+                return true;
             }
             catch (Exception e)
             {
@@ -109,6 +122,66 @@ namespace pobrify
             }
             return true;
         }
+
+        public static bool AlbumsOps(List<Album> list)
+        {
+            do
+            {
+                Console.WriteLine("Do you wanna edit an album, list one or delete it?");
+                var opt = Console.ReadLine().ToLower();
+
+                if (opt == "edit")
+                {
+                    Console.Write("So insert its id: ");
+                    int id = Convert.ToInt32(Console.ReadLine());
+                    try
+                    {
+                        var album = list.Find(i => i.Id == id);
+                        Console.Write("Insert the album's new title: ");
+                        var title = Console.ReadLine();
+                        album.Title = title;
+                        Console.WriteLine($"The album is now '{album.Title}'! ");
+                    }
+                    catch (ArgumentNullException)
+                    {
+                        Console.WriteLine("this album doesn't exist.");
+                    }
+                }
+                else if (opt == "list")
+                {
+                    Console.Write("Insert the title of the album: ");
+                    var entry = Console.ReadLine();
+                    var album = list.Find(i => i.Title == entry);
+                    Console.WriteLine($"The album you're looking have the id {album.Id}! ");
+                }
+                else if (opt == "del")
+                {
+                    Console.Write("Do you want to delete how many albums?");
+                    int l = Convert.ToInt32(Console.ReadLine());
+                    if (l > 1)
+                    {
+                        Console.WriteLine("So insert the ids: ");
+                        for (int i = 0; i < l; i++)
+                        {
+                            var id = Convert.ToInt32(Console.ReadLine());
+                            var album = list.Find(a => a.Id == id);
+                            list.Remove(album);
+                        }
+                    }
+                    else
+                    {
+                        list.RemoveAt(list.Count - 1);
+                    }
+                    Console.WriteLine("These are the current albums: ");
+                    foreach (var item in list)
+                    {
+                        Console.WriteLine($"{item.Title}, ID: {item.Id}");
+                    }
+                }
+                return true;
+            } while (ShouldContinue());
+        }
+
         // Utiliza uma classe personalizada, PobrifyList
         public static bool SongsAlg()
         {

@@ -9,10 +9,19 @@ namespace pobrify
     {
         static void Main(string[] args)
         {
-            var playlist = new PlaylistController();
-            PlaylistController.InsertData();
+            PobrifyContext context = new PobrifyContext();
+            using (var c = new PlaylistController(context))
+            {
+                //var s = new Song(title: "All that", artist: "Zayn", length: "3:21");
+                //var s2 = new Song(title: "Savage", artist: "Megan thee Stallion", length: "2:35");
+                //c.AddSongsToPlaylist(s2);
 
-            Console.ReadLine();
+                c.GetSongsOnPlaylist();
+                c.DeleteSongOnPlaylist(3);
+                c.GetSongsOnPlaylist();
+
+                Console.ReadLine();
+            }
 
             try
             {

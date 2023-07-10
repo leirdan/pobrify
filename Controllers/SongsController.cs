@@ -9,14 +9,14 @@ namespace pobrify.Controllers
         {
             try
             {
-                PobrifyList<SongContext> songsList = new PobrifyList<SongContext>();
+                PobrifyList<Song> songsList = new PobrifyList<Song>();
                 Console.Write("Insert the amount of songs you will add: ");
                 int limit = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Now, you need to insert the all the songs title one by one.");
                 for (int i = 0; i < limit; i++)
                 {
                     var title = Console.ReadLine();
-                    songsList[i] = new SongContext(songsList._size + 1, title);
+                    songsList[i] = new Song(title: title);
                 }
                 Console.WriteLine("You added the following songs: ");
                 songsList.Index();
@@ -44,7 +44,7 @@ namespace pobrify.Controllers
             return true;
         }
 
-        static bool Operations(PobrifyList<SongContext> list)
+        static bool Operations(PobrifyList<Song> list)
         {
             do
             {

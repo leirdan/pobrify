@@ -223,16 +223,17 @@
     <Compile Include="Controllers\AlbumsController.cs" />
     <Compile Include="Controllers\PlaylistController.cs" />
     <Compile Include="Controllers\SongsController.cs" />
-    <Compile Include="Models\AlbumContext.cs" />
+    <Compile Include="Models\Album.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
-    <Compile Include="Models\PlaylistContext.cs" />
+    <Compile Include="Models\Playlist.cs" />
+    <Compile Include="PobrifyContext.cs" />
     <Compile Include="Utils\Continue.cs" />
     <Compile Include="Utils\Exit.cs" />
     <Compile Include="Utils\PobrifyList.cs" />
     <Compile Include="Utils\PobrifyObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\SongContext.cs" />
+    <Compile Include="Models\Song.cs" />
     <Compile Include="Utils\URLFormatter.cs" />
     <Compile Include="Utils\VerifyId.cs" />
   </ItemGroup>

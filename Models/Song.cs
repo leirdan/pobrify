@@ -2,7 +2,7 @@
 
 namespace pobrify
 {
-    public class SongContext : IPobrifyObject
+    public class Song : IPobrifyObject
     {
         private int _id;
         public int Id
@@ -17,14 +17,25 @@ namespace pobrify
             }
         }
         public string Title { get; set; }
+        public string Artist { get; set; }
+        public string Length { get; set; }
 
-        public SongContext(string title)
+        public Song() { }
+
+        public Song(string title, string artist, string length)
         {
             Title = title;
+            Artist = artist;
+            Length = length;
         }
-        public SongContext(int id, string title)
+        public Song(string title, string artist)
         {
-            Id = id;
+            Title = title;
+            Artist = artist;
+        }
+
+        public Song(string title)
+        {
             Title = title;
         }
 

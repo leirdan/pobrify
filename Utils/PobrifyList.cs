@@ -51,15 +51,15 @@ namespace pobrify
             {
                 if (item != null)
                 {
-                    if (item is SongContext song)
+                    if (item is Song song)
                     {
                         Console.WriteLine($"{song.Title}, ID {song.Id}");
                     }
-                    else if (item is PlaylistContext playlist)
+                    else if (item is Playlist playlist)
                     {
                         Console.WriteLine($"{playlist.Title}, ID {playlist.Id}");
                     }
-                    else if (item is AlbumContext album)
+                    else if (item is Album album)
                     {
                         Console.WriteLine($"{album.Title}, ID {album.Id}");
                     }

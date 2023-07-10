@@ -14,17 +14,17 @@ namespace pobrify.Controllers
             try
             {
                 // Lista que contém valores do tipo Album
-                List<AlbumContext> albumsList = new List<AlbumContext>();
+                List<Album> albumsList = new List<Album>();
                 Console.Write("How many albums do you want to store? ");
                 var limit = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Now, you need to insert the all the albums title, one by one.");
 
-                AlbumContext[] temp = new AlbumContext[limit];
+                Album[] temp = new Album[limit];
 
                 for (var i = 0; i < limit; i++)
                 {
                     var title = Console.ReadLine();
-                    temp.SetValue(new AlbumContext(i + 1, title), i);
+                    temp.SetValue(new Album(i + 1, title), i);
                 }
 
                 // Sem o método de extensão -> ListExtensions.AddMany(albumsList, temp);
@@ -78,7 +78,7 @@ namespace pobrify.Controllers
             return true;
         }
 
-        static bool Operations(List<AlbumContext> list)
+        static bool Operations(List<Album> list)
         {
             do
             {

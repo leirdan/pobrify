@@ -51,15 +51,15 @@ namespace pobrify
             {
                 if (item != null)
                 {
-                    if (item is Song song)
+                    if (item is SongContext song)
                     {
                         Console.WriteLine($"{song.Title}, ID {song.Id}");
                     }
-                    else if (item is Playlist playlist)
+                    else if (item is PlaylistContext playlist)
                     {
                         Console.WriteLine($"{playlist.Title}, ID {playlist.Id}");
                     }
-                    else if (item is Album album)
+                    else if (item is AlbumContext album)
                     {
                         Console.WriteLine($"{album.Title}, ID {album.Id}");
                     }
@@ -76,7 +76,7 @@ namespace pobrify
         {
             try
             {
-                if (V.VerifyId(id))
+                if (VerifyId.Verify(id))
                 {
                     return _items[id - 1];
                 }
@@ -96,7 +96,7 @@ namespace pobrify
         {
             try
             {
-                if (V.VerifyId(id))
+                if (VerifyId.Verify(id))
                 {
                     _items[id - 1].Id = id;
                     _items[id - 1].Title = title;
@@ -132,7 +132,7 @@ namespace pobrify
             {
                 foreach (int i in id)
                 {
-                    if (V.VerifyId(i))
+                    if (VerifyId.Verify(i))
                     {
                         if (i == 0)
                         {

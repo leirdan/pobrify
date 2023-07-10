@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Security.Cryptography;
 
 namespace pobrify
 {
-    public class Playlist : IPobrifyObject
+    public class SongContext : IPobrifyObject
     {
         private int _id;
         public int Id
@@ -11,7 +10,7 @@ namespace pobrify
             get { return _id; }
             set
             {
-                if (V.VerifyId(value))
+                if (VerifyId.Verify(value))
                 {
                     _id = value;
                 };
@@ -19,9 +18,11 @@ namespace pobrify
         }
         public string Title { get; set; }
 
-        public int NumberOfSongs { get; set; }
-
-        public Playlist(int id, string title)
+        public SongContext(string title)
+        {
+            Title = title;
+        }
+        public SongContext(int id, string title)
         {
             Id = id;
             Title = title;

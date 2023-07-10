@@ -2,7 +2,7 @@
 
 namespace pobrify
 {
-    public class Album : IPobrifyObject
+    public class AlbumContext : IPobrifyObject
     {
         private int _id;
         public int Id
@@ -10,7 +10,7 @@ namespace pobrify
             get { return _id; }
             set
             {
-                if (V.VerifyId(value))
+                if (VerifyId.Verify(value))
                 {
                     _id = value;
                 };
@@ -18,7 +18,7 @@ namespace pobrify
         }
         public string Title { get; set; }
 
-        public Album(int id, string title)
+        public AlbumContext(int id, string title)
         {
             Id = id;
             Title = title;
@@ -33,7 +33,7 @@ namespace pobrify
             // > 0: obj precede a instância
             try
             {
-                var album = obj as Album; // conversão por "as" indica que, se a conversão não for possível, "album" será nulo.
+                var album = obj as AlbumContext; // conversão por "as" indica que, se a conversão não for possível, "album" será nulo.
 
                 if (album == null)
                 {
@@ -42,7 +42,7 @@ namespace pobrify
 
                 if (this.Id < album.Id)
                 {
-                    return -1; 
+                    return -1;
                 }
                 else if (this.Id > album.Id)
                 {

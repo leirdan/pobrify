@@ -2,9 +2,9 @@
 
 namespace pobrify
 {
-    static class V
+    static class VerifyId
     {
-        public static bool VerifyId(int id)
+        public static bool Verify(int id)
         {
             if (id < 0)
             {

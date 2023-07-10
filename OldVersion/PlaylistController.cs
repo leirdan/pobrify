@@ -1,10 +1,9 @@
-﻿using System;
+﻿/*
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace pobrify.Controllers
-{
-    public class PlaylistController : IDisposable
+    public class PlaylistController : IDisposable, IPlaylistDAO
     {
         protected PobrifyContext Context { get; set; }
         public PlaylistController C { get; }
@@ -38,6 +37,17 @@ namespace pobrify.Controllers
             }
             return songs;
         }
+        // não faz parte daqui, deve ser implementado em outro controller
+        public void UpdateSong(int id, Song newSong)
+        {
+            var s = Context.Songs.Find(id);
+            s.Length = newSong.Length;
+            s.Title = newSong.Title;
+            s.Artist = newSong.Artist;
+            Context.Songs.Update(s);
+            Context.SaveChanges();
+        }
+
         public void DeleteSongOnPlaylist(int id)
         {
             //using (var context = new PobrifyContext())
@@ -53,4 +63,4 @@ namespace pobrify.Controllers
             throw new NotImplementedException();
         }
     }
-}
+*/

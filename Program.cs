@@ -9,19 +9,37 @@ namespace pobrify
     {
         static void Main(string[] args)
         {
-            PobrifyContext context = new PobrifyContext();
-            using (var c = new PlaylistController(context))
+            using (var c = new PlaylistController())
             {
-                //var s = new Song(title: "All that", artist: "Zayn", length: "3:21");
-                //var s2 = new Song(title: "Savage", artist: "Megan thee Stallion", length: "2:35");
-                //c.AddSongsToPlaylist(s2);
+                try
+                {
+                    //var s = new Song(title: "All that", artist: "Zayn", length: "3:21");
+                    //var s2 = new Song(title: "Savage", artist: "Megan thee Stallion", length: "2:35");
+                    //c.AddSongsToPlaylist(s2);
 
-                c.GetSongsOnPlaylist();
-                c.DeleteSongOnPlaylist(3);
-                c.GetSongsOnPlaylist();
+                    //c.DeleteSongOnPlaylist(3);
+                    foreach (Song song in c.GetSongsOnPlaylist())
+                    {
+                        Console.WriteLine($"ID: {song.Id}, '{song.Title}' by {song.Artist}.");
+                    }
 
-                Console.ReadLine();
+                    var s3 = new Song("Conquer all", "Behemoth", "3:55");
+                    c.UpdateSong(4, s3);
+
+                    foreach (Song song2 in c.GetSongsOnPlaylist())
+                    {
+                        Console.WriteLine($"ID: {song2.Id}, '{song2.Title}' by {song2.Artist}.");
+                    }
+
+                    Console.ReadLine();
+                }
+                catch (ArgumentNullException)
+                {
+                    Console.WriteLine("ID de um objeto inexistente. ");
+                }
+
             }
+
 
             try
             {
@@ -33,11 +51,11 @@ namespace pobrify
                     switch (opt)
                     {
                         case "song":
-                            SongsController.Start();
+                            //SongsController.Start();
                             break;
 
                         case "album":
-                            AlbumsController.Start();
+                            //AlbumsController.Start();
                             break;
 
                         case "play":

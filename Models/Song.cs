@@ -9,7 +9,7 @@ namespace pobrify
         {
             get { return _id; }
             set
-            {
+            { 
                 if (VerifyId.Verify(value))
                 {
                     _id = value;
@@ -19,6 +19,10 @@ namespace pobrify
         public string Title { get; set; }
         public string Artist { get; set; }
         public string Length { get; set; }
+
+        // IMPLEMENTAR RELACIONAMENTO
+        protected int IdAlbum { get; }
+        protected int IdArtist { get; }
 
         public Song() { }
 

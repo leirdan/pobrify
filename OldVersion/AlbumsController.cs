@@ -1,4 +1,5 @@
-﻿using pobrify.Extensions;
+﻿/*
+using pobrify.Extensions;
 using pobrify.Utils;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,6 @@ namespace pobrify.Controllers
                     IEnumerable<Album> nonNull = albumsList.Where(i => i != null);
                     IOrderedEnumerable<Album> res = nonNull.OrderBy(album => album.Title);
                     da seguinte forma:
-                 */
 
                 var res = albumsList
                     .Where(i => i != null) // Filtragem apenas de álbuns válidos
@@ -143,3 +143,4 @@ namespace pobrify.Controllers
 
     }
 }
+                 */

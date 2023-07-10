@@ -220,9 +220,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AlbumsController.cs" />
-    <Compile Include="Controllers\PlaylistController.cs" />
-    <Compile Include="Controllers\SongsController.cs" />
+    <Compile Include="DAO\SongDAO.cs" />
+    <Compile Include="OldVersion\AlbumsController.cs" />
+    <Compile Include="OldVersion\PlaylistController.cs" />
+    <Compile Include="DAO\PlaylistDAO.cs" />
+    <Compile Include="OldVersion\SongsController.cs" />
+    <Compile Include="IPlaylistDAO.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Models\Playlist.cs" />

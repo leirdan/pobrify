@@ -10,17 +10,15 @@ namespace pobrify
     {
         static void Main(string[] args)
         {
-            using (var c = new SongDAO())
+            using (var c = new PobrifyContext())
             {
                 try
                 {
-                    PobrifyContext con = new PobrifyContext();
-                    var album = new Album(title: "Speak Now - TV", "Taylor Swift", 2023, "Pop/Rock");
-                    con.Albums.Add(album);
-                    con.SaveChanges();
-                    var song = new Song(title: "Foolish One", artist: album.Artist, "5:01", album.Id);
+                    var album = c.Albums.Find(1);
+                    var song = new Song(title: "Better Than Revenge", artist: album.Artist, "3:37", album.Id);
 
-                    c.Create(song);
+                    c.Songs.Add(song);
+                    c.SaveChanges();
                     Console.WriteLine("Added!");
                     Console.ReadLine();
                 }
@@ -29,6 +27,9 @@ namespace pobrify
                     Console.WriteLine("ID de um objeto inexistente. ");
                 }
             }
+        }
+        static void Old()
+        {
 
             try
             {

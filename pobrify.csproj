@@ -247,6 +247,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\AlbumDAO.cs" />
+    <Compile Include="DAO\DAO.cs" />
+    <Compile Include="DAO\IDAO.cs" />
     <Compile Include="DAO\SongDAO.cs" />
     <Compile Include="Migrations\20230711105401_StartPoint.cs" />
     <Compile Include="Migrations\20230711105401_StartPoint.designer.cs">
@@ -273,7 +276,7 @@
     <Compile Include="Utils\Continue.cs" />
     <Compile Include="Utils\Exit.cs" />
     <Compile Include="Utils\PobrifyList.cs" />
-    <Compile Include="Utils\PobrifyObject.cs" />
+    <Compile Include="Utils\IPobrifyObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Song.cs" />

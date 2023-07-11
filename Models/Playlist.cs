@@ -3,8 +3,7 @@ using System;
 
 namespace pobrify
 {
-    // Utiliza o Entity framework por meio da classe DbContext
-    public class Playlist : DbContext
+    public class Playlist
     {
         private int _id;
         public int Id
@@ -27,6 +26,7 @@ namespace pobrify
                 // this.Length += value;
             }
         }
+
         public string Owner { get; set; }
     }
 }

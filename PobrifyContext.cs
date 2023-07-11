@@ -2,6 +2,7 @@
 
 namespace pobrify
 {
+    // Utiliza o Entity framework por meio da classe DbContext
     public class PobrifyContext : DbContext
     {
         public DbSet<Song> Songs { get; set; }

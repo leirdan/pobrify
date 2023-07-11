@@ -37,9 +37,7 @@ namespace pobrify
                 {
                     Console.WriteLine("ID de um objeto inexistente. ");
                 }
-
             }
-
 
             try
             {

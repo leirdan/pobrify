@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace pobrify
 {
@@ -18,10 +19,28 @@ namespace pobrify
         }
         public string Title { get; set; }
 
-        public Album(int id, string title)
+        public string Artist { get; set; }
+
+        public int Year { get; set; }
+
+        public string Genre { get; set; }
+
+        public Album() { }
+        public Album(string title)
         {
-            Id = id;
             Title = title;
+        }
+        public Album(string title, string artist)
+        {
+            Title = title;
+            Artist = artist;
+        }
+        public Album(string title, string artist, int year, string genre)
+        {
+            Title = title;
+            Artist = artist;
+            Year = year;
+            Genre = genre;
         }
 
         // Herdado da interface IPobrifyObject, a qual herda a interface IComparable.

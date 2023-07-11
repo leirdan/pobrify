@@ -256,6 +256,10 @@
     <Compile Include="Migrations\20230711105443_GenreYearOnAlbum.designer.cs">
       <DependentUpon>20230711105443_GenreYearOnAlbum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20230711111038_RelationshipSongToAlbum.cs" />
+    <Compile Include="Migrations\20230711111038_RelationshipSongToAlbum.designer.cs">
+      <DependentUpon>20230711111038_RelationshipSongToAlbum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\PobrifyContextModelSnapshot.cs" />
     <Compile Include="OldVersion\AlbumsController.cs" />
     <Compile Include="OldVersion\PlaylistController.cs" />

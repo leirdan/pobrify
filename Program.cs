@@ -2,6 +2,7 @@
 using System;
 using pobrify.Utils;
 using pobrify.Controllers;
+using pobrify.DAO;
 
 namespace pobrify
 {
@@ -9,28 +10,18 @@ namespace pobrify
     {
         static void Main(string[] args)
         {
-            using (var c = new PlaylistController())
+            using (var c = new SongDAO())
             {
                 try
                 {
-                    //var s = new Song(title: "All that", artist: "Zayn", length: "3:21");
-                    //var s2 = new Song(title: "Savage", artist: "Megan thee Stallion", length: "2:35");
-                    //c.AddSongsToPlaylist(s2);
+                    PobrifyContext con = new PobrifyContext();
+                    var album = new Album(title: "Speak Now - TV", "Taylor Swift", 2023, "Pop/Rock");
+                    con.Albums.Add(album);
+                    con.SaveChanges();
+                    var song = new Song(title: "Foolish One", artist: album.Artist, "5:01", album.Id);
 
-                    //c.DeleteSongOnPlaylist(3);
-                    foreach (Song song in c.GetSongsOnPlaylist())
-                    {
-                        Console.WriteLine($"ID: {song.Id}, '{song.Title}' by {song.Artist}.");
-                    }
-
-                    var s3 = new Song("Conquer all", "Behemoth", "3:55");
-                    c.UpdateSong(4, s3);
-
-                    foreach (Song song2 in c.GetSongsOnPlaylist())
-                    {
-                        Console.WriteLine($"ID: {song2.Id}, '{song2.Title}' by {song2.Artist}.");
-                    }
-
+                    c.Create(song);
+                    Console.WriteLine("Added!");
                     Console.ReadLine();
                 }
                 catch (ArgumentNullException)

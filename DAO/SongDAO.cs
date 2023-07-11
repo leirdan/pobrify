@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace pobrify.DAO
 {
-    internal class SongDAO
+    internal class SongDAO : IDisposable
     {
         protected PobrifyContext Context { get; }
 
@@ -31,5 +32,9 @@ namespace pobrify.DAO
             Context.SaveChanges();
         }
 
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

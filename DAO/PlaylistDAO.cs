@@ -2,14 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace pobrify.Controllers
 {
-    public class PlaylistController : IDisposable, IDAO<Playlist>
+    public class PlaylistDAO : IDisposable, IDAO<Playlist>
     {
         protected PobrifyContext con = new PobrifyContext();
 
-        public PlaylistController() { }
+        public PlaylistDAO() { }
+
+        public void CreatePlaylist(string title, string length, string owner)
+        {
+            new Playlist(title, length, owner);
+        } 
         public List<Playlist> Index()
         {
             if (con.Playlist.ToList().Count <= 0) { }
@@ -76,34 +82,6 @@ namespace pobrify.Controllers
             }
             con.SaveChanges();
         }
-
-
-        public List<Song> GetSongsOnPlaylist()
-        {
-            var songs = con.Songs.ToList();
-            if (songs == null || songs.Count == 0)
-            {
-                Console.WriteLine("the db doesn't have any songs..");
-            }
-            return songs;
-        }
-
-        public void DeleteSongOnPlaylist(int id)
-        {
-            //try
-            //{
-            //    var songs = new List<Song>();
-            //    var s = con.Songs.Find(id);
-            //    songs.Add(s);
-            //    con.Songs.RemoveRange(songs);
-            //    con.SaveChanges();
-            //}
-            //catch (ArgumentNullException)
-            //{
-            //    throw new ArgumentNullException("ID.");
-            //}
-        }
-
         public void Dispose()
         {
             throw new NotImplementedException();

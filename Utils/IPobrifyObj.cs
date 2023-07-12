@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace pobrify
+﻿namespace pobrify.Utils
 {
-    interface IPobrifyObject : IComparable
+    internal interface IPobrifyObj
     {
         int Id { get; set; }
         string Title { get; set; }

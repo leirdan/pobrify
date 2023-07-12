@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -248,7 +250,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\AlbumDAO.cs" />
-    <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\IDAO.cs" />
     <Compile Include="DAO\SongDAO.cs" />
     <Compile Include="Migrations\20230711105401_StartPoint.cs" />
@@ -263,20 +264,21 @@
     <Compile Include="Migrations\20230711111038_RelationshipSongToAlbum.designer.cs">
       <DependentUpon>20230711111038_RelationshipSongToAlbum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20230712131122_ListOfSongsOnPlaylist.cs" />
+    <Compile Include="Migrations\20230712131122_ListOfSongsOnPlaylist.designer.cs">
+      <DependentUpon>20230712131122_ListOfSongsOnPlaylist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\PobrifyContextModelSnapshot.cs" />
-    <Compile Include="OldVersion\AlbumsController.cs" />
-    <Compile Include="OldVersion\PlaylistController.cs" />
     <Compile Include="DAO\PlaylistDAO.cs" />
-    <Compile Include="OldVersion\SongsController.cs" />
-    <Compile Include="IPlaylistDAO.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Models\Playlist.cs" />
+    <Compile Include="Models\PlaylistSong.cs" />
     <Compile Include="PobrifyContext.cs" />
     <Compile Include="Utils\Continue.cs" />
     <Compile Include="Utils\Exit.cs" />
+    <Compile Include="Utils\IPobrifyObj.cs" />
     <Compile Include="Utils\PobrifyList.cs" />
-    <Compile Include="Utils\IPobrifyObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Song.cs" />

@@ -10,16 +10,13 @@ namespace pobrify
     {
         static void Main(string[] args)
         {
-            using (var c = new PobrifyContext())
+            using (var con = new PobrifyContext())
             {
                 try
                 {
-                    var album = c.Albums.Find(1);
-                    var song = new Song(title: "Better Than Revenge", artist: album.Artist, "3:37", album.Id);
+                    var playlist = new Playlist("new metal", "6", "leirdan");
+                    //playlist.Songs.Add(new Song());
 
-                    c.Songs.Add(song);
-                    c.SaveChanges();
-                    Console.WriteLine("Added!");
                     Console.ReadLine();
                 }
                 catch (ArgumentNullException)

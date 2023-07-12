@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using pobrify.Models;
 
 namespace pobrify
 {
@@ -12,6 +13,13 @@ namespace pobrify
         {
             optionsBuilder
                 .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=pobrify;Trusted_Connection=true;");
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<PlaylistSong>()
+                .HasKey(e => new { e.SongId, e.PlaylistId });
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

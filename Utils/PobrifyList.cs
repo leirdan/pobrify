@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pobrify.Utils;
+using System;
 
 /* Um tipo genérico diminui a redundância de código e permite concentrar métodos comuns a vários tipos (músicas, álbuns, playlists) em uma só classe.
    O tipo é definido no momento de compilação, somente.
@@ -10,10 +11,9 @@ namespace pobrify
     /// </summary>
     // Aqui, é informado ao compilador que o tipo T é sempre uma classe, e assim é possível usar a referência nula dentro da classe.
     // Caso contrário, como um valor (int, bool, etc) não pode receber a referência nula, o código não compilaria.
-    class PobrifyList<T> where T : class, IPobrifyObject // T = Type
+    class PobrifyList<T> where T : class, IPobrifyObj // T = Type
     {
         private readonly T[] _items;
-        private int _nextIndex = 0;
         public int _size = 0;
 
         /// <summary>

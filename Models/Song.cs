@@ -1,28 +1,11 @@
-﻿using System;
+﻿using pobrify.Models;
+using System;
+using System.Collections.Generic;
 
 namespace pobrify
 {
-    public class Song : IPobrifyObject
+    public class Song
     {
-        private int _id;
-        public int Id
-        {
-            get { return _id; }
-            set
-            {
-                if (VerifyId.Verify(value))
-                {
-                    _id = value;
-                };
-            }
-        }
-        public string Title { get; set; }
-        public string Artist { get; set; }
-        public string Length { get; set; }
-
-        // IMPLEMENTAR RELACIONAMENTO
-        public int AlbumId { get; set; }
-        public Album Album { get; set; }
         public Song() { }
 
         public Song(string title, string artist, string length, int albumId)
@@ -46,5 +29,26 @@ namespace pobrify
         {
             throw new NotImplementedException();
         }
+        private int _id;
+        public int Id
+        {
+            get { return _id; }
+            set
+            {
+                if (VerifyId.Verify(value))
+                {
+                    _id = value;
+                };
+            }
+        }
+        public string Title { get; set; }
+        public string Artist { get; set; }
+        public string Length { get; set; }
+
+        public int AlbumId { get; set; }
+        public Album Album { get; set; }
+
+        public IList<PlaylistSong> Playlists { get; set; }
+        
     }
 }

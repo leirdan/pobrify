@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace pobrify
 {
-    public class Album : IPobrifyObject
+    public class Album
     {
         private int _id;
         public int Id

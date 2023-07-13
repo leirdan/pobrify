@@ -10,13 +10,18 @@ namespace pobrify
     {
         private int _id;
 
-        public Playlist(string title, string length, string owner)
+        public Playlist()
+        {
+            this.Songs = new List<PlaylistSong>();
+        }
+        public Playlist(string title, string owner, string length = "10")
         {
             Title = title;
             Length = length;
             Owner = owner;
-        }
 
+            this.Songs = new List<PlaylistSong>();
+        }
         public int Id
         {
             get { return _id; }
@@ -34,5 +39,9 @@ namespace pobrify
         public string Owner { get; set; }
 
         public IList<PlaylistSong> Songs { get; set; }
+        public void AddSongs(Song s)
+        {
+            this.Songs.Add(new PlaylistSong() { Song = s });
+        }
     }
 }

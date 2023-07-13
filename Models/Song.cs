@@ -15,6 +15,12 @@ namespace pobrify
             Length = length;
             AlbumId = albumId;
         }
+        public Song(string title, string artist, string length)
+        {
+            Title = title;
+            Artist = artist;
+            Length = length;
+        }
         public Song(string title, string artist)
         {
             Title = title;

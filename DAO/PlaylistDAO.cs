@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace pobrify.Controllers
 {
@@ -12,10 +13,6 @@ namespace pobrify.Controllers
 
         public PlaylistDAO() { }
 
-        public void CreatePlaylist(string title, string length, string owner)
-        {
-            new Playlist(title, length, owner);
-        } 
         public List<Playlist> Index()
         {
             if (con.Playlist.ToList().Count <= 0) { }
@@ -86,7 +83,6 @@ namespace pobrify.Controllers
         {
             throw new NotImplementedException();
         }
-
 
     }
 }

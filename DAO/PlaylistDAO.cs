@@ -39,7 +39,6 @@ namespace pobrify.Controllers
         public void Update(Playlist entity, int id)
         {
             Playlist p = con.Playlist.Find(id);
-            p.Owner = entity.Owner;
             p.Length = entity.Length;
             p.Title = entity.Title;
             con.Playlist.Update(p);

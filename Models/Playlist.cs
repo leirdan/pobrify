@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using pobrify.Models;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace pobrify
@@ -14,11 +12,10 @@ namespace pobrify
         {
             this.Songs = new List<PlaylistSong>();
         }
-        public Playlist(string title, string owner, string length = "10")
+        public Playlist(string title, int userId)
         {
             Title = title;
-            Length = length;
-            Owner = owner;
+            UserId = userId;
 
             this.Songs = new List<PlaylistSong>();
         }
@@ -34,14 +31,15 @@ namespace pobrify
             }
         }
         public string Title { get; set; }
-        public string Length { get; set; }
+        public int Length { get; set; }
 
-        public string Owner { get; set; }
+        public int UserId { get; set; }
 
         public IList<PlaylistSong> Songs { get; set; }
         public void AddSongs(Song s)
         {
             this.Songs.Add(new PlaylistSong() { Song = s });
+            Length++;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace pobrify
         public DbSet<Song> Songs { get; set; }
         public DbSet<Playlist> Playlist { get; set; }
         public DbSet<Album> Albums { get; set; }
+        public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
@@ -19,6 +20,12 @@ namespace pobrify
             modelBuilder
                 .Entity<PlaylistSong>()
                 .HasKey(e => new { e.SongId, e.PlaylistId });
+
+            // Shadow property: UserId não existe na solução mas existe no banco
+            modelBuilder
+                .Entity<Playlist>()
+                .Property<int>("UserId");
+
             base.OnModelCreating(modelBuilder);
         }
     }

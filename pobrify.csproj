@@ -268,12 +268,17 @@
     <Compile Include="Migrations\20230712131122_ListOfSongsOnPlaylist.designer.cs">
       <DependentUpon>20230712131122_ListOfSongsOnPlaylist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20230713145717_User.cs" />
+    <Compile Include="Migrations\20230713145717_User.designer.cs">
+      <DependentUpon>20230713145717_User.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\PobrifyContextModelSnapshot.cs" />
     <Compile Include="DAO\PlaylistDAO.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Models\Playlist.cs" />
     <Compile Include="Models\PlaylistSong.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="PobrifyContext.cs" />
     <Compile Include="Utils\Continue.cs" />
     <Compile Include="Utils\Exit.cs" />

@@ -272,10 +272,19 @@
     <Compile Include="Migrations\20230713145717_User.designer.cs">
       <DependentUpon>20230713145717_User.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20230713155323_Artist.cs" />
+    <Compile Include="Migrations\20230713155323_Artist.designer.cs">
+      <DependentUpon>20230713155323_Artist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20230713171209_FixArtistOnDbSet.cs" />
+    <Compile Include="Migrations\20230713171209_FixArtistOnDbSet.designer.cs">
+      <DependentUpon>20230713171209_FixArtistOnDbSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\PobrifyContextModelSnapshot.cs" />
     <Compile Include="DAO\PlaylistDAO.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Models\Artist.cs" />
     <Compile Include="Models\Playlist.cs" />
     <Compile Include="Models\PlaylistSong.cs" />
     <Compile Include="Models\User.cs" />

@@ -1,25 +1,16 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using pobrify.Models;
 
 namespace pobrify
 {
     public class Album
     {
-        private int _id;
-        public int Id
-        {
-            get { return _id; }
-            set
-            {
-                if (VerifyId.Verify(value))
-                {
-                    _id = value;
-                };
-            }
-        }
+        public int Id { get; set; }
         public string Title { get; set; }
 
-        public string Artist { get; set; }
+        public Artist Artist { get; set; }
+        public int ArtistId { get; set; }
 
         public int Year { get; set; }
 
@@ -30,15 +21,15 @@ namespace pobrify
         {
             Title = title;
         }
-        public Album(string title, string artist)
+        public Album(string title, int artistId)
         {
             Title = title;
-            Artist = artist;
+            ArtistId = artistId;
         }
-        public Album(string title, string artist, int year, string genre)
+        public Album(string title, int artistId, int year, string genre)
         {
             Title = title;
-            Artist = artist;
+            ArtistId = artistId;
             Year = year;
             Genre = genre;
         }

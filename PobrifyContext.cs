@@ -10,6 +10,7 @@ namespace pobrify
         public DbSet<Playlist> Playlist { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Artist> Artists { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
@@ -21,10 +22,19 @@ namespace pobrify
                 .Entity<PlaylistSong>()
                 .HasKey(e => new { e.SongId, e.PlaylistId });
 
-            // Shadow property: UserId não existe na solução mas existe no banco
             modelBuilder
-                .Entity<Playlist>()
-                .Property<int>("UserId");
+                .Entity<Artist>()
+                .HasMany(e => e.Songs)
+                .WithOne(e => e.Artist)
+                .HasForeignKey(e => e.ArtistId)
+                .IsRequired();
+
+            modelBuilder
+                .Entity<Artist>()
+                .HasMany(e => e.Albums)
+                .WithOne(e => e.Artist)
+                .HasForeignKey(e => e.ArtistId)
+                .IsRequired();
 
             base.OnModelCreating(modelBuilder);
         }

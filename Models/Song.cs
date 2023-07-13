@@ -8,23 +8,23 @@ namespace pobrify
     {
         public Song() { }
 
-        public Song(string title, string artist, string length, int albumId)
+        public Song(string title, int artistId, int albumId, string length)
         {
             Title = title;
-            Artist = artist;
+            ArtistId = artistId;
             Length = length;
             AlbumId = albumId;
         }
-        public Song(string title, string artist, string length)
+        public Song(string title, int artistId, int albumId)
         {
             Title = title;
-            Artist = artist;
-            Length = length;
+            ArtistId = artistId;
+            AlbumId = albumId;
         }
-        public Song(string title, string artist)
+        public Song(string title, int artistId)
         {
             Title = title;
-            Artist = artist;
+            ArtistId = artistId;
         }
         public Song(string title)
         {
@@ -35,26 +35,16 @@ namespace pobrify
         {
             throw new NotImplementedException();
         }
-        private int _id;
-        public int Id
-        {
-            get { return _id; }
-            set
-            {
-                if (VerifyId.Verify(value))
-                {
-                    _id = value;
-                };
-            }
-        }
+        public int Id { get; set; }
         public string Title { get; set; }
-        public string Artist { get; set; }
+        public Artist Artist { get; set; }
+        public int ArtistId { get; set; }
         public string Length { get; set; }
 
         public int AlbumId { get; set; }
         public Album Album { get; set; }
 
         public IList<PlaylistSong> Playlists { get; set; }
-        
+
     }
 }

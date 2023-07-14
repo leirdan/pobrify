@@ -5,14 +5,48 @@ using pobrify.Controllers;
 using pobrify.DAO;
 using System.Linq;
 using System.Collections.Generic;
-using Microsoft.Win32;
 using pobrify.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace pobrify
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            using (var con = new PobrifyContext())
+            {
+                var tsSongs =
+                    con
+                    .Songs
+                    .Where(e => e.Artist.Name == "Taylor Swift")
+                    .ToList();
+                foreach (var i in tsSongs)
+                {
+                    Console.WriteLine(i.Title);
+                }
+                Console.WriteLine("=========");
+            }
+            using (var conTwo = new PobrifyContext())
+            {
+                // Select com Join em um relacionamento 1:N (artista-músicas).
+                var behemothSongs =
+                    conTwo
+                    .Songs
+                    // Cada include e thenInclude avançam "um nível para baixo" no relacionamento
+                    .Include(
+                        e => e.Artist
+                    ).Where(e => e.Artist.Id == 1016)
+                    .ToList();
+
+                foreach (var i in behemothSongs)
+                {
+                    Console.WriteLine(i.Title);
+                }
+            }
+            
+        }
+        static void Inserts()
         {
             using (var con = new PobrifyContext())
             {
@@ -141,7 +175,7 @@ namespace pobrify
             //    }
             //    con.Playlist.Add(newMetal); -gera erro pois newMetal é uma playlist que já existe e o ID não pode mudar
             //    con.SaveChanges();
-            }
+        }
         static void Algorithm()
         {
             //using (var con = new PobrifyContext())
@@ -195,7 +229,7 @@ namespace pobrify
             //    }
 
             //    Console.WriteLine("Thanks!");
-            }
+        }
         static void Old()
         {
 

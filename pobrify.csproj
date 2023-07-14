@@ -280,6 +280,10 @@
     <Compile Include="Migrations\20230713171209_FixArtistOnDbSet.designer.cs">
       <DependentUpon>20230713171209_FixArtistOnDbSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20230714114917_PlaylistSongOnContext.cs" />
+    <Compile Include="Migrations\20230714114917_PlaylistSongOnContext.designer.cs">
+      <DependentUpon>20230714114917_PlaylistSongOnContext.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\PobrifyContextModelSnapshot.cs" />
     <Compile Include="DAO\PlaylistDAO.cs" />
     <Compile Include="Models\Album.cs" />

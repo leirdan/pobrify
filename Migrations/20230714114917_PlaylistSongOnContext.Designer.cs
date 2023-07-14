@@ -8,9 +8,10 @@ using pobrify;
 namespace pobrify.Migrations
 {
     [DbContext(typeof(PobrifyContext))]
-    partial class PobrifyContextModelSnapshot : ModelSnapshot
+    [Migration("20230714114917_PlaylistSongOnContext")]
+    partial class PlaylistSongOnContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")

@@ -25,8 +25,8 @@ namespace pobrify
                 {
                     Console.WriteLine(i.Title);
                 }
-                Console.WriteLine("=========");
             }
+            Console.WriteLine("=========");
             using (var conTwo = new PobrifyContext())
             {
                 // Select com Join em um relacionamento 1:N (artista-músicas).
@@ -44,7 +44,43 @@ namespace pobrify
                     Console.WriteLine(i.Title);
                 }
             }
-            
+            Console.WriteLine("=========");
+            using (var conThree = new PobrifyContext())
+            {
+                // Select com Join em um relacionamento 1:1 (user-playlist)
+                var users =
+                    conThree
+                    .Users
+                    .Include(u => u.Playlist)
+                    .ToList();
+                foreach (var i in users)
+                {
+                    Console.WriteLine($"user '{i.Name}' is the owner of playlist '{i.Playlist.Title}'.");
+                }
+            }
+            Console.WriteLine("=========");
+            using (var conFour = new PobrifyContext())
+            {
+                // Select com Join em um relacionamento N:N (músicas-playlists)
+                var songsPlaylists =
+                    conFour
+                    .PlaylistSongs
+                    .Include(s => s.Song)
+                    .ThenInclude(a => a.Artist)
+                    .Include(p => p.Playlist)
+                    .ThenInclude(u => u.User)
+                    .OrderBy(x => x.Song.Title)
+                    .ToList();
+                
+                foreach (var i in songsPlaylists)
+                {
+                    Console.WriteLine($"The song '{i.Song.Title}' " +
+                        $"by the artist '{i.Song.Artist.Name}' " +
+                        $"belongs to playlist '{(i.Playlist.Title).ToUpper()}' " +
+                        $"created by user '{i.Playlist.User.Name}'!");
+                }
+            }
+
         }
         static void Inserts()
         {
